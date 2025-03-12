@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
+
+button {
+  cursor: pointer;
+}
+html {
+  font-size: 12px; /* Adjust to your preference (default is 16px) */
+}
