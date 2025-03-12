@@ -11,10 +11,9 @@ import { Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
 import { Loader } from "lucide-react";
-import PageSkeleton from "./pages/Skeleton/pageSkeleton";
 
 function App() {
-  const { authUser, checkAuth, isCheckingAuth , onlineUsers} = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   console.log(onlineUsers, "online");
   const { theme } = useThemeStore();
 
@@ -29,7 +28,6 @@ function App() {
     return (
       <div className="flex items-center justify-center h-screen">
         <Loader className="size-10 animate-spin" />
-       
       </div>
     );
 
