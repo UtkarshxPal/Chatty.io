@@ -11,9 +11,11 @@ const userSocketMap = {}; // {userId : socketId}
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173"],
-    credentials: true,
+    origin: "https://chattyio-utkarshxpals-projects.vercel.app", // Your frontend URL
+    methods: ["GET", "POST"], // Allow necessary methods
+    credentials: true, // Allow cookies (important for auth)
   },
+  transports: ["websocket"], // Force WebSockets, avoid polling
 });
 
 function getReceiverSocketId(userId) {

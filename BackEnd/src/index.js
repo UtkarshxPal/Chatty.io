@@ -15,12 +15,12 @@ connectDB();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Allow frontend URL
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow necessary HTTP methods
+    origin: [process.env.FRONTEND_URL, "http://localhost:5173"], // Allow both production and local URLs
+    credentials: true, // Allow cookies
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"], // Explicitly allow headers
   })
 );
-
 app.use(express.json({ limit: "10mb" })); // Increase to 10MB
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 

@@ -92,9 +92,9 @@ export const useAuthStore = create((set, get) => {
       if (!authUser || (socket && socket.connected)) return;
       try {
         const socket = io(BASE_URL, {
-          query: {
-            userId: authUser._id,
-          },
+          transports: ["websocket"], // Force WebSockets, avoid CORS polling issues
+          withCredentials: true, // Allow cookies (important for authentication)
+          query: { userId: authUser._id },
         });
         socket.on("connect", () => {
           console.log("Connected to Socket.io Server");
