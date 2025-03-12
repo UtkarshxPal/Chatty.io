@@ -18,7 +18,11 @@ function Sidebar() {
   );
   const filteredUsers = showOnlineOnly
     ? users.filter((user) => onlineUsers.includes(user._id))
-    : users;
+    : users.slice().sort((a, b) => {
+        const aOnline = onlineUsers.includes(a._id);
+        const bOnline = onlineUsers.includes(b._id);
+        return bOnline - aOnline; // Sort so that online users come first
+      });
 
   if (isUsersLoading) return <SidebarSkeleton></SidebarSkeleton>;
 

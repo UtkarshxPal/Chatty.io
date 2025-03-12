@@ -11,7 +11,10 @@ const userSocketMap = {}; // {userId : socketId}
 
 const io = new Server(server, {
   cors: {
-    origin: "https://chattyio-utkarshxpals-projects.vercel.app", // Your frontend URL
+    origin: [
+      "https://chattyio-utkarshxpals-projects.vercel.app",
+      "http://localhost:5173",
+    ], // Your frontend URL
     methods: ["GET", "POST"], // Allow necessary methods
     credentials: true, // Allow cookies (important for auth)
   },
