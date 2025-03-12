@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useChatStore } from "./useChatStore";
 import { io } from "socket.io-client";
 
-const BASE_URL = "http://localhost:5001";
+const BASE_URL = "https://chatty-io-la0v.onrender.com";
 
 export const useAuthStore = create((set, get) => {
   return {
@@ -92,9 +92,9 @@ export const useAuthStore = create((set, get) => {
       if (!authUser || (socket && socket.connected)) return;
       try {
         const socket = io(BASE_URL, {
-          query:{
-            userId : authUser._id,
-          }
+          query: {
+            userId: authUser._id,
+          },
         });
         socket.on("connect", () => {
           console.log("Connected to Socket.io Server");
@@ -102,9 +102,9 @@ export const useAuthStore = create((set, get) => {
         socket.on("disconnect", () => {
           console.log("Disconnected from Socket.io Server");
         });
-        socket.on("getOnlineUsers", (userIds)=>{
-          set({onlineUsers : userIds})
-        })
+        socket.on("getOnlineUsers", (userIds) => {
+          set({ onlineUsers: userIds });
+        });
         socket.connect();
         set({ socket: socket });
       } catch (error) {
